@@ -8,8 +8,27 @@ getItems() — повертає масив поточних товарів у п
 addItem(newItem) — приймає новий товар newItem і додає його до масиву товарів у приватну властивість items об'єкта.
 removeItem(itemToRemove) — приймає рядок з назвою товару itemToRemove і видаляє його з масиву товарів у приватній властивості items об'єкта.*/
 
+class Storage {
+#items;
 
+constructor(goods){
+  this.#items = goods;
+}
 
+getItems(){
+  return this.#items;
+}
+
+addItem(newItem){
+  this.#items.push(newItem);
+}
+
+removeItem(itemToRemove){
+  if(this.#items.includes(itemToRemove)){
+  this.#items.splice(this.#items.indexOf(itemToRemove), 1);
+  }
+}
+}
 
 
 
@@ -24,21 +43,3 @@ console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
 
 storage.removeItem("Scaner");
 console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
-
-
-/*На що буде звертати увагу ментор при перевірці:
-
-Оголошений клас Storage
-У класі Storage оголошений метод getItems
-У класі Storage оголошений метод addItem
-У класі Storage оголошений метод removeItem
-Властивість items у класі Storage оголошена приватною
-Метод getItems повертає значення приватної властивості items екземпляра класу, який його викликає
-Метод addItem змінює значення приватної властивості items екземпляра класу, який його викликає
-Метод removeItem змінює значення приватної властивості items екземпляра класу, який його викликає
-У результаті виклику new Storage(["Nanitoids", "Prolonger", "Antigravitator"]) значення змінної storage — це об'єкт
-У об’єкта storage немає публічної властивості items
-Перший виклик storage.getItems() одразу після ініціалізації екземпляра повертає масив ["Nanitoids", "Prolonger", "Antigravitator"]
-Другий виклик storage.getItems() після виклику storage.addItem("Droid") повертає масив ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-Третій виклик storage.getItems() після виклику storage.removeItem("Prolonger") повертає масив ["Nanitoids", "Antigravitator", "Droid"]
-Четвертий виклик storage.getItems() після виклику storage.removeItem("Scaner") повертає масив ["Nanitoids", "Antigravitator", "Droid"]*/
